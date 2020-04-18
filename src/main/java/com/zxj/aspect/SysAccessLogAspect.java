@@ -17,7 +17,8 @@ import java.util.Map;
 /**
  * 功能描述：系统访问日志切面类
  */
-@Aspect("sysAccessLogAspect")
+//@Aspect("sysAccessLogAspect")
+@Component
 public class SysAccessLogAspect {
 
     @Autowired
