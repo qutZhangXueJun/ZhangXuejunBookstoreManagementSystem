@@ -24,7 +24,7 @@
     <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
 
     <!--配置连接池-->
-    <bean id="datSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+   <!-- <bean id="datSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driver}"></property>
         <property name="jdbcUrl" value="${jdbc.url}"></property>
         <property name="user" value="${jdbc.userName}"></property>
@@ -33,8 +33,17 @@
         <property name="maxPoolSize" value="${jdbc.c3p0.maxPoolSize}"/>
         <property name="minPoolSize" value="${jdbc.c3p0.minPoolSize}"/>
         <property name="maxIdleTime" value="${jdbc.c3p0.maxIdleTime}"/>
+    </bean>-->
+    <bean id="datSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.userName}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="initialSize" value="${jdbc.c3p0.initialPoolSize}"/>
+        <property name="maxTotal" value="${jdbc.c3p0.maxPoolSize}"/>
+        <property name="minIdle" value="${jdbc.c3p0.minPoolSize}"/>
+        <property name="maxWaitMillis" value="${jdbc.c3p0.maxIdleTime}"/>
     </bean>
-
     <!--配置SqlSessionFactory对象-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="datSource"></property>

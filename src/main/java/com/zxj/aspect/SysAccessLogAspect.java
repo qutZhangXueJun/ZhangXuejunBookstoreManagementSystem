@@ -18,17 +18,18 @@ import java.util.Map;
  * 功能描述：系统访问日志切面类
  */
 //@Aspect("sysAccessLogAspect")
+
 @Component
+@Aspect
 public class SysAccessLogAspect {
 
     @Autowired
     private HttpServletRequest request;
     @Autowired
     private ISysAccessLogService sysAccessLogService;
-    //访问时间
-    private Date accessDate;
-    //日志信息Map
-    private Map<String,Object> logMap=new HashMap<>();
+
+    private Date accessDate;//访问时间
+    private Map<String,Object> logMap=new HashMap<>(); //日志信息Map
     private Class clazz;  //访问类
 
     /**
@@ -36,6 +37,7 @@ public class SysAccessLogAspect {
      * @param jp
      */
     public void doBefore(JoinPoint jp){
+        System.out.println("前");
         clazz = jp.getTarget().getClass();
         if(clazz!= SysAccessLogController.class){
 
@@ -74,6 +76,7 @@ public class SysAccessLogAspect {
      * @param jp
      */
     public void doAfter(JoinPoint jp){
+        System.out.println("后");
          if (clazz!=SysAccessLogController.class){
              long executeTime = new Date().getTime()-accessDate.getTime();
 
