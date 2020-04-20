@@ -6,12 +6,12 @@ package com.zxj.pojo;
 public class BookSub {
 
     private int id;
-    private int uId;
-    private int bId;
-    private String subDateTime;
-    private String returnDateTime;
-    private int bookType;
-    private int returntype;
+    private int uId;//用户ID
+    private int bId;//图书ID
+    private String subDateTime;//借阅时间
+    private String returnDateTime;//归还时间
+    private int bookType;//图书状态
+    private int returntype;//归还状态
 
 
     public int getId() {

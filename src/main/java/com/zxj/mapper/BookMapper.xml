@@ -22,24 +22,30 @@
     <!--新增图书-->
     <insert id="addBook" parameterType="map">
         insert into bookmanage (
+         isbn,
          bookName,
          author,
-         inventory,
-         price
+         publish,
+         price,
+         inventory
         ) values (
+         #{isbn},
          #{bookName},
          #{author},
-         #{inventory},
-         #{price}
+         #{publish},
+         #{price},
+         #{inventory}
         )
     </insert>
 
     <!--编辑图书-->
     <update id="editBook" parameterType="map">
-        update bookmanage set bookName = #{bookName},
+        update bookmanage set isbn = #{isbn},
+        bookName = #{bookName},
         author = #{author},
-        inventory = #{inventory},
-        price = #{price}
+        publish = #{publish},
+        price = #{price},
+        inventory = #{inventory}
         where bId = #{bId}
     </update>
 
