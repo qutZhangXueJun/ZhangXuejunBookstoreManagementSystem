@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private int id;
-    private String uid;
+    private String uId;
     private String userName;
     private String password;
     private String uName;
@@ -25,11 +25,11 @@ public class User implements Serializable {
     }
 
     public String getuId() {
-        return uid;
+        return uId;
     }
 
     public void setuId(String uId) {
-        this.uid = uId;
+        this.uId = uId;
     }
 
     public String getUserName() {
@@ -76,7 +76,7 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", uId='" + uid + '\'' +
+                ", uId='" + uId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", uName='" + uName + '\'' +

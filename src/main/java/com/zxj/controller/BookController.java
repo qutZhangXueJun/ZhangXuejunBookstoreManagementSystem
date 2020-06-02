@@ -5,6 +5,7 @@ import com.zxj.common.AssembleResponseMsg;
 import com.zxj.pojo.ResponseBody;
 import com.zxj.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.Map;
  * 功能描述：图书控制层
  */
 @RestController
+@CrossOrigin(origins = "*")
 public class BookController {
 
     @Autowired
@@ -22,7 +24,7 @@ public class BookController {
     /**
      * 功能描述：查看图书列表
      * @param map
-     * @return
+     * @return99
      */
     @RequestMapping(value = "/queryBookList",produces = "application/json;charset=utf-8")
     public ResponseBody queryBookList(@RequestBody Map<String,Object> map){

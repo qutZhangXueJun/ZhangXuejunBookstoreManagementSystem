@@ -15,6 +15,14 @@
             <if test="author!=null and author!=''">
                 and author like CONCAT('%',#{author},'%')
             </if>
+
+            <if test="isbn!=null and isbn!=''">
+                and isbn like CONCAT('%',#{isbn},'%')
+            </if>
+
+            <if test="bId!=null and bId!=''">
+                and bId like CONCAT('%',#{bId},'%')
+            </if>
         </where>
     </select>
 
@@ -92,11 +100,11 @@
             </if>
 
             <if test="bId!=null and bId!=''">
-               and bId =#{bId}
+               and bId = #{bId}
             </if>
 
             <if test="bookType!=null and bookType == '1'.toString()">
-                AND bookType=#{bookType}
+                AND bookType = #{bookType}
             </if>
         </where>
     </update>

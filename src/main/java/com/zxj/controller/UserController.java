@@ -5,9 +5,8 @@ import com.zxj.common.AssembleResponseMsg;
 import com.zxj.pojo.ResponseBody;
 import com.zxj.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +15,7 @@ import java.util.Map;
 
  */
 @RestController
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
@@ -31,12 +31,15 @@ public class UserController {
         Map<String,Object> resultMap = userService.queryUserList(map);
         return new AssembleResponseMsg().success(resultMap);
     }
-
-
+//    @RequestMapping("/queryUser")
+//    public int queryUser(@RequestParam Map map){
+//        return 1;
+//
+//    }
     @RequestMapping(value = "/queryUser",produces = "application/json;charset=utf-8")
     public ResponseBody queryUser(@RequestBody Map<String,Object> map){
         int flag = userService.queryUser(map);
-        String name = "admin";
+        String name = "zhangxuejun";
         Map<String,String> all = new HashMap<>();
         if(flag==1){//说明存在账号和密码，即登录账号和密码输入正确
             for (Map.Entry<String,Object> entry:map.entrySet()){

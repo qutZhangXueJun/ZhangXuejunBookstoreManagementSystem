@@ -32,7 +32,7 @@
         uName,
         age,
         sex) values (
-        #{uid},
+        #{uId},
         #{userName},
         #{password},
         #{uName},
@@ -44,7 +44,7 @@
     <update id="updateUser" parameterType="map">
         update tbuser
         set
-        uId=#{uid},
+        uId=#{uId},
         userName = #{userName},
         password = #{password},
         uName = #{uName},
@@ -57,7 +57,7 @@
     <update id="updateUserById" parameterType="map">
         update tbuser
         set
-        uId=#{uid},
+        uId=#{uId},
         userName = #{userName},
         password = #{password},
         uName = #{uName},

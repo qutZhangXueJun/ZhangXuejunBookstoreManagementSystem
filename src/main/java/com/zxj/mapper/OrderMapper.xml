@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxj.mapper.OrderMapper">
+
+    <!--获取用户订单-->
+    <select id="queryOrderList" parameterType="map" resultType="order">
+        select o.oId,
+        DATE_FORMAT(o.orderDate,'%Y-%m-%d %H:%i:%s') orderDate,
+        o.userName,
+        o.isbn,
+        o.count
+        from orders o
+        <where>
+            <if test="userName!=null and userName!=''">
+                userName like CONCAT('%',#{userName},'%')
+            </if>
+        </where>
+    </select>
+
+
+    <!--根据时间查询订单-->
+    <select id="queryOrderByDate" parameterType="map" resultType="hashMap">
+        select o.oId,
+        DATE_FORMAT(o.orderDate,'%Y-%m-%d %H:%i:%s') orderDate,
+        o.userName,
+        o.isbn,
+        o.count
+        from orders o
+        where o.orderDate >= #{beginTime} and o.orderDate &lt;= #{endTime}
+        order by o.orderDate desc
+    </select>
+
+    <!--添加订单-->
+    <insert id="addOrder" parameterType="map">
+        insert into orders (
+         userName,
+         isbn,
+         count,
+         orderDate
+        ) values (
+         #{userName},
+         #{isbn},
+         #{count},
+         #{orderDate}
+        )
+    </insert>
+
+    <!--更新图书库存-->
+    <update id="updateInventory" parameterType="map">
+        update bookmanage set inventory = #{inventory} where isbn = #{isbn}
+    </update>
+
+    <!--编辑订单-->
+    <update id="editOrder" parameterType="map">
+        update orders set count = #{count}
+        where oId = #{oId}
+    </update>
+
+    <!--删除订单-->
+    <delete id="delOrder" parameterType="map">
+        delete from orders where oId = #{oId}
+    </delete>
+
+</mapper>

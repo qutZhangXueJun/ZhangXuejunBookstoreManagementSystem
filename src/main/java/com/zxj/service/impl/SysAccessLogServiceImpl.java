@@ -25,12 +25,17 @@ public class SysAccessLogServiceImpl implements ISysAccessLogService {
 
     @Override
     public Map<String, Object> querySysLogList(Map<String, Object> map) {
-        int pageNum=Integer.parseInt(map.get("pageNum").toString()); //当前页
-        int pageSize=Integer.parseInt(map.get("pageSize").toString());  //每页几条
+        //当前页
+        int pageNum=Integer.parseInt(map.get("pageNum").toString());
+        //每页几条
+        int pageSize=Integer.parseInt(map.get("pageSize").toString());
+
         PageHelper.startPage(pageNum,pageSize);
         List<Map<String,Object>> resultList = sysAccessLogMapper.querySysLogList(map);
         PageInfo pageInfo = new PageInfo(resultList);
-        long total = pageInfo.getTotal();//总条数
+        //总条数
+        long total = pageInfo.getTotal();
+
         Map<String,Object> resultMap = new HashMap<>();
         resultMap.put("total",total);
         resultMap.put("rows",resultList);
